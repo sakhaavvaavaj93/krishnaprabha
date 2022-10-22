@@ -141,34 +141,6 @@ bot.send(
     )
 )
 
-@bot.on_message(filters.command(["restart", f"restart@{USERNAME}"]) & filters.user(ADMINS)
-async def restart(_, message: Message):
-    k=await message.reply_text("🔄 **Checking ...**")
-    await asyncio.sleep(3)
-    if Config.HEROKU_APP:
-        await k.edit("🔄 **Heroku Detected, \nRestarting Your App...**")
-        Config.HEROKU_APP.restart()
-    else:
-        await k.edit("🔄 **Restarting, Please Wait...**")
-        process = FFMPEG_PROCESSES.get
-        if process:
-            try:
-                process.send_signal(SIGINT)
-            except subprocess.TimeoutExpired:
-                process.kill()
-            except Exception as e:
-                print(e)
-                pass
-            FFMPEG_PROCESSES = ""
-        Thread(
-            target=stop_and_restart()
-            ).start()
-    try:
-        await k.edit("✅ **Restarted Successfully! \nJoin @DC_LOGS For Update!**")
-        await k.reply_to_message.delete()
-    except:
-        pass
-
 idle()
 print("\n\nDC Player Bot Stopped, Join @DC_Kurukshethra!")
 bot.stop()
