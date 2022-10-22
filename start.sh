@@ -1,5 +1,5 @@
 echo "Cloning Repo, Please Wait..."
-git clone https://github.com/sakhaavvaavaj93/krishnaprabha.git/ krishnaprabha 
+git clone https://github.com/sakhaavvaavaj93/krishnaprabha
 echo "Installing Requirements..."
 cd /krishnaprabha
 pip3 install -U -r requirements.txt
