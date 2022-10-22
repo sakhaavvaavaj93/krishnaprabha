@@ -11,3 +11,5 @@ youtube_search_python
 pyrogram==1.4.16
 pytgcalls==3.0.0.dev21
 git+https://github.com/asmsafone/downloader
+yt-dlp
+youtube_dl
