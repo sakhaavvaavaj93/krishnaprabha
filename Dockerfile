@@ -1,23 +1,12 @@
-# Debian Based Docker
 FROM debian:latest
-
 RUN apt update && apt upgrade -y
-
-# Installing Packages
 RUN apt install git curl python3-pip ffmpeg -y
-
-# Installing Pip Packages
 RUN pip3 install -U pip
-
-# Copying Requirements
-COPY requirements.txt /requirements.txt
-
-# Installing Requirements
-RUN cd /
-RUN pip3 install -U -r requirements.txt
-RUN mkdir /krishnaprabha
-WORKDIR /krishnaprabha
-COPY start.sh /start.sh
-
-# Running Radio Player Bot
-CMD ["/bin/bash", "/start.sh"]
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
+RUN apt-get install -y nodejs
+RUN npm i -g npm
+RUN mkdir /app/
+WORKDIR /app/
+COPY . /app/
+RUN pip3 install -U -r Installer
+CMD python3 -m main.py
